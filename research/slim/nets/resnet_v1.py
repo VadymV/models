@@ -1,5 +1,8 @@
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
+# Modifications copyright (C) 2018  Vadym Gryshchuk (vadym.gryshchuk@protonmail.com)
+# Date modified: 29 July 2018
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -243,6 +246,14 @@ def resnet_v1(inputs,
           # Global average pooling.
           net = tf.reduce_mean(net, [1, 2], name='pool5', keep_dims=True)
           end_points['global_pool'] = net
+
+        # Start: Modifications (Vadym Gryshchuk).
+        # Out: 1 x 1 x 256
+        net = slim.conv2d(net, 256, [1, 1], activation_fn=None,
+                          normalizer_fn=None, scope='Conv2d_features')
+        end_points['Features_3d'] = net
+        # End: Modifications (Vadym Gryshchuk).
+
         if num_classes:
           net = slim.conv2d(net, num_classes, [1, 1], activation_fn=None,
                             normalizer_fn=None, scope='logits')
