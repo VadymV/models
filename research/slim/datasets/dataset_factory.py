@@ -22,12 +22,20 @@ from datasets import cifar10
 from datasets import flowers
 from datasets import imagenet
 from datasets import mnist
+from datasets import nico
+from datasets import icwt
+from datasets import core50
+
 
 datasets_map = {
     'cifar10': cifar10,
     'flowers': flowers,
     'imagenet': imagenet,
     'mnist': mnist,
+    'nico':nico,
+    'icwt': icwt,
+    'core50': core50,
+
 }
 
 
