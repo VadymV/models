@@ -51,9 +51,9 @@ tf.app.flags.DEFINE_string(
 
 def main(_):
     if not FLAGS.testing_dataset_dir:
-        raise ValueError('ERROR: provide the train data with --testing_dataset_dir')
+        raise ValueError('ERROR: provide the test data with --testing_dataset_dir')
     if not FLAGS.training_dataset_dir:
-        raise ValueError('ERROR: provide the test data with --training_dataset_dir')
+        raise ValueError('ERROR: provide the train data with --training_dataset_dir')
     if not FLAGS.convert_dataset_dir:
         raise ValueError('ERROR: provide output folder with --convert_dataset_dir')
     if not FLAGS.dataset_name:
@@ -66,7 +66,7 @@ def main(_):
         convert_icwt.run(FLAGS.training_dataset_dir, FLAGS.testing_dataset_dir,
                                                FLAGS.convert_dataset_dir)
     elif FLAGS.dataset_name == 'nico':
-        convert_icwt.run(FLAGS.training_dataset_dir, FLAGS.testing_dataset_dir,
+        convert_nico.run(FLAGS.training_dataset_dir, FLAGS.testing_dataset_dir,
                                                FLAGS.convert_dataset_dir)
     else:
         raise ValueError(
